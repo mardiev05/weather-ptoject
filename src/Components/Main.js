@@ -40,7 +40,6 @@ export default function Main() {
         setIsTrue(!isTrue)
 
     }
-    console.log(city)
 
 
 

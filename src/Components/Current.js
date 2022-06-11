@@ -12,6 +12,7 @@ export default function Current() {
     const [isTrue, setIsTrue] = useState(false)
     const [fahrenheit, setFahrenheit] = useState("℉")
     const [celsius, setCelsius] = useState("imperial")
+    const filteredList = data?.list?.filter(item => item?.dt_txt?.split(" ")?.[0] == new Date().toISOString().split("T")[0])
 
     useEffect(() => {
         (async () => {
@@ -20,8 +21,6 @@ export default function Current() {
             setData(res)
         })()
     }, [city, celsius])
-
-
 
 
 
@@ -43,7 +42,7 @@ export default function Current() {
         <div className="current">
 
             <div className="ball__row">
-                <div className={isTrue ? "bal bal__true" : "ball bal__false"} onClick={changeCelsius}></div>
+                <div className={isTrue ? "bal__true" : "bal__false"} onClick={changeCelsius}></div>
             </div>
 
             <div className="weather__row">
@@ -67,12 +66,12 @@ export default function Current() {
                     <div className="detailes__row">
 
                         <div className="detailes__card">
-                            <p>{data?.list?.[0]?.main?.feels_like.toFixed()}</p>
+                            <p>{data?.list?.[0]?.main?.feels_like.toFixed()}{fahrenheit}</p>
                             <p>Feels Like</p>
                         </div>
 
                         <div className="detailes__card">
-                            <p>{data?.list?.[0]?.main?.humidity}</p>
+                            <p>{data?.list?.[0]?.main?.humidity}%</p>
                             <p>Humidity</p>
                         </div>
 
@@ -101,38 +100,16 @@ export default function Current() {
                 </div>
             </div>
 
+
+
             <div className="weather__hourly">
-
-                <div className="hourly__card">
-                    <p className="hourly__time">{new Date(data?.list?.[1]?.dt_txt).getHours()}</p>
-                    <img src={SunnyImg} alt="" />
-                    <p className="hourly__temp">Temp {data?.list?.[1]?.main?.temp.toFixed()}{fahrenheit}</p>
-                </div>
-
-                <div className="hourly__card">
-                    <p className="hourly__time">{new Date(data?.list?.[2]?.dt_txt).getHours()}</p>
-                    <img src={SunnyImg} alt="" />
-                    <p className="hourly__temp">Temp {data?.list?.[2]?.main?.temp.toFixed()}{fahrenheit}</p>
-                </div>
-
-                <div className="hourly__card">
-                    <p className="hourly__time">{new Date(data?.list?.[3]?.dt_txt).getHours()}</p>
-                    <img src={SunnyImg} alt="" />
-                    <p className="hourly__temp">Temp {data?.list?.[3]?.main?.temp.toFixed()}{fahrenheit}</p>
-                </div>
-
-                <div className="hourly__card">
-                    <p className="hourly__time">{new Date(data?.list?.[4]?.dt_txt).getHours()}</p>
-                    <img src={SunnyImg} alt="" />
-                    <p className="hourly__temp">Temp {data?.list?.[4]?.main?.temp.toFixed()}{fahrenheit}</p>
-                </div>
-
-                <div className="hourly__card">
-                    <p className="hourly__time">{new Date(data?.list?.[5]?.dt_txt).getHours()}</p>
-                    <img src={SunnyImg} alt="" />
-                    <p className="hourly__temp">Temp {data?.list?.[5]?.main?.temp.toFixed()}{fahrenheit}</p>
-                </div>
-
+                {filteredList?.map(item => (
+                    <div className="hourly__card">
+                        <p className="hourly__time">{new Date(item?.dt_txt)?.getHours()}</p>
+                        <img src={SunnyImg} alt="" />
+                        <p className="hourly__temp">Temp {data?.list?.[1]?.main?.temp.toFixed()}{fahrenheit}</p>
+                    </div>
+                ))}
             </div>
 
         </div>
