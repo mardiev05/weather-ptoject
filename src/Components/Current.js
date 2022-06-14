@@ -12,7 +12,11 @@ export default function Current() {
     const [isTrue, setIsTrue] = useState(false)
     const [fahrenheit, setFahrenheit] = useState("℉")
     const [celsius, setCelsius] = useState("imperial")
+    const [newUser, setNewUser] = useState([])
+
     const filteredList = data?.list?.filter(item => item?.dt_txt?.split(" ")?.[0] == new Date().toISOString().split("T")[0])
+
+    console.log(newUser)
 
     useEffect(() => {
         (async () => {
@@ -24,7 +28,10 @@ export default function Current() {
 
 
 
-
+    const deleteCard = (id) => {
+        const deleted = filteredList.filter(item => item.dt == id)
+        console.log(deleted)
+    }
 
     const changeCelsius = () => {
         if (isTrue) {
@@ -104,8 +111,8 @@ export default function Current() {
 
             <div className="weather__hourly">
                 {filteredList?.map(item => (
-                    <div className="hourly__card">
-                        <p className="hourly__time">{new Date(item?.dt_txt)?.getHours()}</p>
+                    <div className="hourly__card" key={item.dt}>
+                        <p className="hourly__time" onClick={() => deleteCard(item.dt)}>{new Date(item?.dt_txt)?.getHours()}</p>
                         <img src={SunnyImg} alt="" />
                         <p className="hourly__temp">Temp {data?.list?.[1]?.main?.temp.toFixed()}{fahrenheit}</p>
                     </div>

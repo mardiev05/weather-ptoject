@@ -4,20 +4,16 @@ import Current from "./Current";
 
 
 export default function Main() {
-    const [data, setData] = useState({})
     const [city, setCity] = useState("Nashville")
-    const [isTrue, setIsTrue] = useState(false)
-    const [fahrenheit, setFahrenheit] = useState("℉")
-    const [celsius, setCelsius] = useState("imperial")
+    const [value, setValue] = useState("")
     const navigate = useNavigate()
 
     useEffect(() => {
         (async () => {
-            const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=b0f572a4d0aaa69489800bacb6ae51be&units=${celsius}`)
+            const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=b0f572a4d0aaa69489800bacb6ae51be&units=imperial`)
             const res = await data.json()
-            setData(res)
         })()
-    }, [city, celsius])
+    }, [city])
 
 
     const onSubmit = (e) => {
@@ -27,25 +23,31 @@ export default function Main() {
         navigate("current/" + value)
 
     }
-
-
-    const changeCelsius = () => {
-        if (isTrue) {
-            setCelsius("metric")
-            setFahrenheit("°C")
-        } else {
-            setCelsius("imperial")
-            setFahrenheit("℉")
-        }
-        setIsTrue(!isTrue)
+    const navigateTourrent = (e) => {
+        e.preventDefault()
+        const { value } = e.target.search
+        setCity(value)
+        navigate("week/" + value)
 
     }
+
+
+
+
+
 
 
 
     return <div className="main">
         <div className="form__cont">
             <form onSubmit={onSubmit}>
+                <h2>Current</h2>
+
+                <input type="search" name="search" defaultValue={city} placeholder="Enter Your City" />
+                <button type="submit">Search</button>
+            </form>
+            <form onSubmit={navigateTourrent}>
+                <h2>Week</h2>
                 <input type="search" name="search" defaultValue={city} placeholder="Enter Your City" />
                 <button type="submit">Search</button>
             </form>

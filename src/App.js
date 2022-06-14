@@ -16,7 +16,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Main />} />
                 <Route path="current/:citYY" element={<Current />} />
-                <Route path="week" element={<Week />} />
+                <Route path="week/:citYY" element={<Week />} />
             </Routes>
         </div>
     );

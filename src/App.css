@@ -17,6 +17,7 @@ body {
     padding: 15px;
     font-size: 18px;
     position: fixed;
+    top: 0;
     font-weight: 400;
     width: 100%;
 }
@@ -35,6 +36,12 @@ a {
     padding-top: 100px;
 }
 
+.form__cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 /* form start */
 
@@ -46,6 +53,7 @@ a {
 
 form {
     width: 50%;
+    margin-bottom: 50px;
 }
 
 input {
