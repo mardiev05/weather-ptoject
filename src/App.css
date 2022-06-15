@@ -10,6 +10,21 @@ body {
     background-color: #214bbc;
 }
 
+.app {
+    width: 100%;
+    height: 100vh;
+    background-image: src('./images/video8.mp4');
+}
+
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .app .main__navbar {
     display: flex;
     justify-content: center;
@@ -18,6 +33,7 @@ body {
     font-size: 18px;
     position: fixed;
     top: 0;
+    z-index: 1;
     font-weight: 400;
     width: 100%;
 }
@@ -49,6 +65,8 @@ a {
     display: flex;
     justify-content: center;
     margin-top: 2%;
+    position: absolute;
+    width: 100%;
 }
 
 form {
@@ -57,26 +75,26 @@ form {
 }
 
 input {
-    width: 70%;
-    font-size: 17px;
-    height: 30px;
-    border-radius: 5px 0 0 5px;
+    width: 80%;
+    font-size: 20px;
+    height: 50px;
+    border-radius: 15px 0 0 15px;
     border: none;
-    padding: 5px 18px;
+    padding: 17px 35px;
     color: dimgrey;
-    background-color: #f1f1f1;
+    background-color: #fff;
     box-shadow: inset 3px 4px 30px 0px #f1f1f1, 10px 12px 13px 1px rgb(0 0 0 / 60%);
 }
 
 button {
-    width: 25%;
-    height: 30px;
+    width: 20%;
+    height: 50px;
     border: none;
-    font-size: 17px;
+    font-size: 20px;
     background-color: cornflowerblue;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 15px 15px 0;
     color: #fff;
-    box-shadow: inset 3px 4px 30px 0px #254142, 10px 12px 13px 1px rgb(0 0 0 / 60%);
+    box-shadow: 10px 12px 13px 1px rgb(0 0 0 / 60%);
 }
 
 
@@ -125,6 +143,9 @@ button {
 
 .current {
     padding: 50px;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
 }
 
 .weather__row {
@@ -134,7 +155,7 @@ button {
 }
 
 .weather__title h2 {
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: 30px;
     font-weight: 700;
     line-height: 1;
@@ -165,14 +186,14 @@ button {
 }
 
 .temp__num h1 {
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: 65px;
     font-weight: 300;
     line-height: 1;
 }
 
 .temp__num p {
-    color: #fff;
+    color: rgb(0, 0, 0);
     line-height: 0.5;
     width: max-content;
     margin: auto;
@@ -194,13 +215,13 @@ button {
 }
 
 .detailes__card p:first-child {
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: 18px;
     font-weight: 600;
 }
 
 .detailes__card p:last-child {
-    color: #888;
+    color: rgb(255, 0, 0);
     font-size: 15px;
     font-weight: 300;
 }
@@ -255,4 +276,25 @@ button {
 
 .btn__row input {
     margin-top: 200px;
+}
+
+
+/* week */
+
+.week {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    position: absolute;
+}
+
+.bgVideo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }

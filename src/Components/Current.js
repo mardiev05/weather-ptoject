@@ -1,35 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 import SunnyImg from "../images/sunny.png"
 
 
 
 export default function Current() {
-    let { citYY } = useParams()
+    // let { citYY } = useParams()
     const [data, setData] = useState({})
-    const [city, setCity] = useState(citYY)
+    // const [city, setCity] = useState(citYY)
     const [isTrue, setIsTrue] = useState(false)
     const [fahrenheit, setFahrenheit] = useState("℉")
     const [celsius, setCelsius] = useState("imperial")
-    const [newUser, setNewUser] = useState([])
 
-    const filteredList = data?.list?.filter(item => item?.dt_txt?.split(" ")?.[0] == new Date().toISOString().split("T")[0])
+    const filteredList = data?.list?.filter(item => item?.dt_txt?.split(" ")?.[0] === new Date().toISOString().split("T")[0])
 
-    console.log(newUser)
+
+
 
     useEffect(() => {
+
         (async () => {
-            const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=b0f572a4d0aaa69489800bacb6ae51be&units=${celsius}`)
+            const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${localStorage.getItem("city")}&appid=b0f572a4d0aaa69489800bacb6ae51be&units=${celsius}`)
             const res = await data.json()
             setData(res)
         })()
-    }, [city, celsius])
+    }, [celsius])
 
 
 
     const deleteCard = (id) => {
-        const deleted = filteredList.filter(item => item.dt == id)
+        const deleted = filteredList.filter(item => item.dt === id)
         console.log(deleted)
     }
 
@@ -118,7 +119,6 @@ export default function Current() {
                     </div>
                 ))}
             </div>
-
         </div>
     )
 
